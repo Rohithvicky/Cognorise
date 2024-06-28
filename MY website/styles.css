@@ -1,0 +1,457 @@
+/* Import Poppins font with all weights and styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+}
+
+body {
+    min-height: 100vh;
+    background: url('sven-mieke-MsCgmHuirDo-unsplash.jpg'); /* Replace with your actual image URL */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: top 0.3s ease, background-color 0.3s ease; /* Add transition effect */
+    background-color: rgba(0, 0, 0, 0.5); /* Default background color */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Default box shadow */
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, white, transparent);
+    transition: .2s;
+}
+
+.header:hover::after {
+    left: 100%;
+} 
+
+.logo {
+    font-size: 2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a {
+    font-size: 1.15rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+#check {
+    display: none;
+}
+
+.icons {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .header {
+        padding: 1.3rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1.3rem 5%;
+    }
+
+    .icons {
+        display: inline-flex;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    #close-icon {
+        display: none;
+    }
+
+    #check:checked ~ .icons #menu-icon {
+        display: none;
+    }
+
+    #check:checked ~ .icons #close-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: height 0.3s ease, opacity 0.3s ease; /* Smooth transition for height and opacity */
+        overflow: hidden;
+    }
+
+    #check:checked ~ .navbar {
+        height: 17rem;
+    }
+
+    #check:checked ~ .navbar a {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+        margin-top: 1rem; /* Add spacing between each item */
+    }
+}
+
+.navbar a {
+    font-weight: bold;
+}
+
+body.personal-training {
+    background: none;
+}
+
+.personal-training-section {
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Ensure relative positioning for absolute children */
+}
+
+.personal-training-section .image-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.personal-training-section img {
+    max-width: 100%; /* Make the image responsive */
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.personal-training-section .image-text {
+    position: absolute;
+    right: 20px;
+    top: 25%;
+    transform: translateY(-50%);
+    text-align: left;
+    color: #fff;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: slideLeft 0.5s ease forwards;
+}
+
+@media (max-width: 768px) {
+    .personal-training-section .image-text {
+        position: absolute;
+        left: 20px;
+        right: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: left;
+    }
+}
+
+.personal-training-section .image-text h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.personal-training-section .image-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    animation: slideLeft 0.5s ease 0.3s forwards;
+}
+
+.personal-training-section .additional-text {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.personal-training-section .additional-text h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.personal-training-section .additional-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.personal-training-section .additional-text ul {
+    list-style-type: none;
+    padding-left: 0;
+    color: #000;
+}
+
+.personal-training-section .additional-text li {
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.personal-training-section .additional-text .special-text {
+    font-weight: bold;
+    color: #000;
+}
+
+.book-pt-session {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.book-pt-session h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.book-pt-session form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-pt-session form .form-group {
+    margin-bottom: 15px;
+}
+
+.book-pt-session form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.book-pt-session form input[type="text"],
+.book-pt-session form input[type="email"],
+.book-pt-session form input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.book-pt-session form input[type="text"]:focus,
+.book-pt-session form input[type="email"]:focus,
+.book-pt-session form input[type="tel"]:focus {
+    outline: none;
+    border-color: #f44336;
+}
+
+.book-pt-session form .checkbox {
+    margin-bottom: 15px;
+}
+
+.book-pt-session form button {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.book-pt-session form button:hover {
+    background-color: #0b7dda;
+}
+
+.section .btn {
+    display: inline-block;
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.section .btn:hover {
+    background-color: #0b7dda;
+}
+
+#hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px); /* Adjust 70px based on your header height */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Example background color */
+    color: #fff; /* Example text color */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    max-width: 600px; /* Example max-width for content */
+}
+
+.hero-content h1 {
+    font-size: 3rem; /* Example font size for heading */
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.5rem; /* Example font size for paragraph */
+    margin-bottom: 20px;
+}
+
+.hero-content .btn {
+    display: inline-block;
+    background-color: #2196F3; /* Example button background color */
+    color: #fff; /* Example button text color */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 1rem; /* Example button font size */
+    transition: background-color 0.3s ease;
+}
+
+.hero-content .btn:hover {
+    background-color: #0b7dda; /* Example button hover background color */
+}
+
+
+.sections-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as per your spacing needs */
+    align-items: flex-start; /* Align items at the top */
+    max-width: 1200px; /* Example maximum width */
+    margin: 0 auto; /* Center align the container */
+    padding: 20px; /* Example padding */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.section {
+    flex: 0 0 calc(50% - 10px); /* Adjust width of each section with spacing */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Example background color */
+    color: #fff; /* Example text color */
+    border-radius: 10px; /* Example border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.section h2 {
+    font-size: 2rem; /* Example font size for heading */
+    margin-bottom: 10px;
+}
+
+.section p {
+    font-size: 1.2rem; /* Example font size for paragraph */
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.section .btn {
+    display: inline-block;
+    background-color: #2196F3; /* Example button background color */
+    color: #fff; /* Example button text color */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 1rem; /* Example button font size */
+    transition: background-color 0.3s ease;
+}
+
+.section .btn:hover {
+    background-color: #0b7dda; /* Example button hover background color */
+}
+
+@media (max-width: 768px) {
+    .sections-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
+
+    .section {
+        flex: 1 0 auto; /* Allow sections to grow vertically */
+        margin-bottom: 20px; /* Example margin between sections */
+    }
+}
+
+@media (max-width: 768px) {
+    .book-pt-session form input[type="text"],
+    .book-pt-session form input[type="email"],
+    .book-pt-session form input[type="tel"] {
+        width: calc(100% - 20px); /* Adjust for padding */
+    }
+}
+
+/* Keyframes for animations */
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
